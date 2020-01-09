@@ -20,6 +20,7 @@
                 <button id="exclusion" type="button" class="btn btn-primary">Exclusion</button>
                 <button id="difference" type="button" class="btn btn-primary">Difference</button>
                 <button id="default" type="button" class="btn btn-primary">Default</button>
+                <button id="clear" type="button" class="btn btn-danger">Clear</button>
             </div>
             <div class="col-sm-6">
                 <canvas id="draw"></canvas>
@@ -119,6 +120,7 @@
         document.getElementById("exclusion").addEventListener("click", changeExclusion);
         document.getElementById("difference").addEventListener("click", changeDifference);
         document.getElementById("default").addEventListener("click", changeDefault);
+        document.getElementById("clear").addEventListener("click", clear);
 
         function changeLum() {
             ctx.globalCompositeOperation = 'luminosity';
@@ -147,6 +149,10 @@
 
         function changeDefault() {
             ctx.globalCompositeOperation = 'source-over';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        function clear() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         };
 
