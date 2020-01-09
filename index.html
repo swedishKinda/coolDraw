@@ -25,17 +25,31 @@
             </div>
         </div>
     </div>
+    
     <style>
-
         body {
             background-color: black;
         }
-    
+
         .buttonSide {
             background-color: grey;
         }
 
+        #draw {
+            background-color: white;
+        }
+
     </style>
+    
+    <script>
+
+        const canvas = document.querySelector('#draw');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+    </script>
+
 </body>
 
 </html>
