@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    
+
     <style>
         body {
             background-color: black;
@@ -38,16 +38,79 @@
         #draw {
             background-color: white;
         }
-
     </style>
-    
+
     <script>
 
+        // selects canvas
         const canvas = document.querySelector('#draw');
+        // sets canvas to two dimensional
         const ctx = canvas.getContext('2d');
+        // sets canvas width and height to size of window
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-    
+
+        // sets drawing color
+        ctx.strokeStyle = '#BADASS';
+        // sets line end to round
+        ctx.lineCap = 'round';
+        // sets line intersection to round
+        ctx.lineJoin = 'round';
+        // sets line width
+        ctx.lineWidth = '50';
+        // ctx.globalCompositeOperation = 'difference';
+
+        // sets drawing to false as default and other default starting points for drawing
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let hue = 0;
+        let direction = true;
+
+        // if isDrawing equals true then return console log coordinates
+        function foo(fum) {
+            if (!isDrawing)
+                return console.log(fum);
+
+            // sets color when running function
+            ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+            // begins path when running function
+            ctx.beginPath();
+            // draws line btwn old X/Y to new X/Y
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(fum.offsetX, fum.offsetY);
+            ctx.stroke();
+            [lastX, lastY] = [fum.offsetX, fum.offsetY];
+
+            // increases hue as line is drawn then when gets to last hue resets to zero
+            hue++;
+            if (hue == 360) {
+                hue = 0;
+            }
+
+            // makes it so line width grows and shrinks as user draws
+            if (ctx.lineWidth == 100 || ctx.lineWidth == 1) {
+                direction = !direction;
+            }
+            if (direction) {
+                ctx.lineWidth++;
+            } else {
+                ctx.lineWidth--;
+            }
+        }
+
+        // when mouse button is held down this fires 'foo' and resets X and Y
+        canvas.addEventListener('mousedown', (fum) => {
+            isDrawing = true;
+            [lastX, lastY] = [fum.offsetX, fum.offsetY];
+        });
+
+        // fires foo when mouse is moved within canvas box
+        canvas.addEventListener('mousemove', foo);
+        // if mouse button isn't pressed or out of canvas box it doesn't draw
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseout', () => isDrawing = false);
+
     </script>
 
 </body>
