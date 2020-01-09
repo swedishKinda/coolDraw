@@ -19,6 +19,7 @@
                 <button id="hue" type="button" class="btn btn-primary">Hue</button>
                 <button id="exclusion" type="button" class="btn btn-primary">Exclusion</button>
                 <button id="difference" type="button" class="btn btn-primary">Difference</button>
+                <button id="default" type="button" class="btn btn-primary">Default</button>
             </div>
             <div class="col-sm-6">
                 <canvas id="draw"></canvas>
@@ -99,7 +100,7 @@
             }
         }
 
-        // when mouse button is held down this fires 'foo' and resets X and Y
+        // when mouse button is held down this fires starts drawing and resets X and Y
         canvas.addEventListener('mousedown', (fum) => {
             isDrawing = true;
             [lastX, lastY] = [fum.offsetX, fum.offsetY];
@@ -110,6 +111,44 @@
         // if mouse button isn't pressed or out of canvas box it doesn't draw
         canvas.addEventListener('mouseup', () => isDrawing = false);
         canvas.addEventListener('mouseout', () => isDrawing = false);
+
+        // event listeners for buttons
+        document.getElementById("luminosity").addEventListener("click", changeLum);
+        document.getElementById("color").addEventListener("click", changeColor);
+        document.getElementById("hue").addEventListener("click", changeHue);
+        document.getElementById("exclusion").addEventListener("click", changeExclusion);
+        document.getElementById("difference").addEventListener("click", changeDifference);
+        document.getElementById("default").addEventListener("click", changeDefault);
+
+        function changeLum() {
+            ctx.globalCompositeOperation = 'luminosity';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        function changeColor() {
+            ctx.globalCompositeOperation = 'color';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        function changeHue() {
+            ctx.globalCompositeOperation = 'hue';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        function changeExclusion() {
+            ctx.globalCompositeOperation = 'exclusion';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        function changeDifference() {
+            ctx.globalCompositeOperation = 'difference';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        function changeDefault() {
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
 
     </script>
 
