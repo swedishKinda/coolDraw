@@ -190,19 +190,19 @@
             };
         }
 
-        // Prevent scrolling when touching the canvas
-        document.addEventListener("touchstart", function (fum) {
-            if (fum.target == canvas) {
+        // Prevent scrolling when touching the canvas (not working)
+        document.body.addEventListener("touchstart", function (fum) {
+            if (fum.target === canvas) {
                 fum.preventDefault();
             }
         }, false);
-        document.addEventListener("touchend", function (fum) {
-            if (fum.target == canvas) {
+        document.body.addEventListener("touchend", function (fum) {
+            if (fum.target === canvas) {
                 fum.preventDefault();
             }
         }, false);
-        document.addEventListener("touchmove", function (fum) {
-            if (fum.target == canvas) {
+        document.body.addEventListener("touchmove", function (fum) {
+            if (fum.target === canvas) {
                 fum.preventDefault();
             }
         }, false);
