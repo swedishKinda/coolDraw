@@ -15,7 +15,7 @@
         <div class="row">
             <div class="buttonSide col-sm-6">
                 <div>Draw in white space to the right! And click the buttons to change how it looks! Woo! Work in
-                    Progess!(wip) version 1.21</div>
+                    Progess!(wip) version 1.22</div>
                 <button id="luminosity" type="button" class="btn btn-primary">Luminosity</button>
                 <button id="color" type="button" class="btn btn-primary">Color</button>
                 <button id="hue" type="button" class="btn btn-primary">Hue</button>
@@ -191,21 +191,26 @@
         }
 
         // Prevent scrolling when touching the canvas (not working)
-        document.body.addEventListener("touchstart", function (fum) {
-            if (fum.target === canvas) {
-                fum.preventDefault();
-            }
-        }, false);
-        document.body.addEventListener("touchend", function (fum) {
-            if (fum.target === canvas) {
-                fum.preventDefault();
-            }
-        }, false);
-        document.body.addEventListener("touchmove", function (fum) {
-            if (fum.target === canvas) {
-                fum.preventDefault();
-            }
-        }, false);
+        // document.body.addEventListener("touchstart", function (fum) {
+        //     if (fum.target === canvas) {
+        //         fum.preventDefault();
+        //     }
+        // }, false);
+        // document.body.addEventListener("touchend", function (fum) {
+        //     if (fum.target === canvas) {
+        //         fum.preventDefault();
+        //     }
+        // }, false);
+        // document.body.addEventListener("touchmove", function (fum) {
+        //     if (fum.target === canvas) {
+        //         fum.preventDefault();
+        //     }
+        // }, false);
+
+        canvas.ontouchstart = function (fum) {
+            if (fum.touches) fum = fum.touches[0];
+            return false;
+        }
 
     </script>
 
