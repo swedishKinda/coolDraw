@@ -191,17 +191,17 @@
         }
 
         // Prevent scrolling when touching the canvas
-        document.body.addEventListener("touchstart", function (fum) {
+        document.addEventListener("touchstart", function (fum) {
             if (fum.target == canvas) {
                 fum.preventDefault();
             }
         }, false);
-        document.body.addEventListener("touchend", function (fum) {
+        document.addEventListener("touchend", function (fum) {
             if (fum.target == canvas) {
                 fum.preventDefault();
             }
         }, false);
-        document.body.addEventListener("touchmove", function (fum) {
+        document.addEventListener("touchmove", function (fum) {
             if (fum.target == canvas) {
                 fum.preventDefault();
             }
